@@ -6,15 +6,31 @@
 // }
 
 const App = () => {
-  return <div>
-    <Cat />
-    <Cat />
-    <Cat />
-</div>
+  const profiles = [
+    { name: "Taro", sex: "male", age: 10},
+    { name: "Jecika", sex: "female", age: 14},
+    { name: "Takeshi", sex: "male", age: 16},
+    { name: "Jack", sex: "male", age: 12},
+    { name: "NoName"},
+  ]
+  return (
+    <div>
+      {
+        profiles.map((profile, index) => {
+          return <User name={profile.name} sex={profile.sex} age={profile.age} key={index} />
+        })
+      }
+    </div>
+  )
 }
 
-const Cat = () => {
-  return <h1>Meow!</h1>
+const User = (props) => {
+  return <div>Hi, I am {props.name}! My gender is {props.sex}.I'm {props.age} years old.</div>
+}
+
+User.defaultProps = {
+  sex: "male",
+  age: 1
 }
 
 export default App;
