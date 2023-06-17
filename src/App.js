@@ -5,6 +5,14 @@
 //   return dom;
 // }
 
+function calculateDaysBetweenDates(startDate, endDate) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const diff = end.getTime() - start.getTime();
+  const days = diff / (1000 * 60 * 60 * 24);
+  return days;
+}
+
 const App = () => {
   const profiles = [
     { name: "Taro", sex: "male", age: 10},
@@ -16,6 +24,7 @@ const App = () => {
   return (
     <div>
       {
+        // プロパティをmap関数で渡す
         profiles.map((profile, index) => {
           return <User name={profile.name} sex={profile.sex} age={profile.age} key={index} />
         })
@@ -25,7 +34,7 @@ const App = () => {
 }
 
 const User = (props) => {
-  return <div>Hi, I am {props.name}! My gender is {props.sex}.I'm {props.age} years old.</div>
+  return <div>Hi, I am {props.name}! My gender is {props.sex}.I'm {props.age} years old. 月初から{calculateDaysBetweenDates('2023/6/1','2023/06/17')} 日目です</div>
 }
 
 User.defaultProps = {
