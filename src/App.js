@@ -1,48 +1,37 @@
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
 
-// function App() {
-//   const greeting = "Hi!!";
-//   const dom = <h1 className="foo">{greeting}</h1>;
-//   return dom;
-// }
+const App = () => ( <Counter></Counter> )
 
-function calculateDaysBetweenDates(startDate, endDate) {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const diff = end.getTime() - start.getTime();
-  const days = diff / (1000 * 60 * 60 * 24);
-  return days;
+class Counter extends Component {
+  constructor(props) {
+    super(props)
+    // countをキーとした値を0で初期化
+    this.state = { count: 0 }
+  }
+
+  handlePlusButton = () => {
+    // stateのcountの値を取得して+1してsetStateで更新
+    this.setState( { count: this.state.count + 1 })
+  }
+  handleMinusButton = () => {
+    // stateのcountの値を取得して-1してsetStateで更新
+    this.setState( { count: this.state.count - 1 })
+  }
+  handleResetButton = () => {
+    // stateのcountの値を0にしてsetStateで更新
+    this.setState( { count: 0 })
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <div>count: { this.state.count } </div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+        <button onClick={this.handleResetButton}>reset</button>
+      </React.Fragment>
+    )
+  }
 }
-
-const App = () => {
-  const profiles = [
-    { name: "Taro", sex: "male", age: 10},
-    { name: "Jecika", sex: "female", age: 14},
-    { name: "Takeshi", sex: "male", age: 16},
-    { name: "Jack", sex: "male", age: 12},
-    { name: "NoName", age: 3},
-    { name: "Satoh", sex:"male", age: 5 },
-  ]
-  return (
-    <div>
-      {
-        // プロパティをmap関数で渡す
-        profiles.map((profile, index) => {
-          return <User name={profile.name} sex={profile.sex} age={profile.age} key={index} />
-        })
-      }
-    </div>
-  )
-}
-
-const User = (props) => {
-  return <div>Hi, I am {props.name}! My gender is {props.sex}.I'm {props.age} years old. 月初から{calculateDaysBetweenDates('2023/6/1','2023/06/17')} 日目です</div>
-}
-
-User.propTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number.isRequired,
-}
-
 
 export default App;
