@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 
 // function App() {
 //   const greeting = "Hi!!";
@@ -19,7 +20,8 @@ const App = () => {
     { name: "Jecika", sex: "female", age: 14},
     { name: "Takeshi", sex: "male", age: 16},
     { name: "Jack", sex: "male", age: 12},
-    { name: "NoName"},
+    { name: "NoName", age: 3},
+    { name: "Satoh", sex:"male", age: 5 },
   ]
   return (
     <div>
@@ -37,9 +39,10 @@ const User = (props) => {
   return <div>Hi, I am {props.name}! My gender is {props.sex}.I'm {props.age} years old. 月初から{calculateDaysBetweenDates('2023/6/1','2023/06/17')} 日目です</div>
 }
 
-User.defaultProps = {
-  sex: "male",
-  age: 1
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired,
 }
+
 
 export default App;
